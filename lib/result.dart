@@ -107,7 +107,7 @@ class Result extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Addition23',
+                    'Addition 23',
                     style: TextStyle(
                       color: ColorLibrary.themePrimary,
                       fontFamily: 'Poppins',
