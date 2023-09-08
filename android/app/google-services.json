@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "805610748437",
+    "project_id": "addition-23",
+    "storage_bucket": "addition-23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805610748437:android:11ff15145da87aa5abec1c",
+        "android_client_info": {
+          "package_name": "lakeside.imperial.addition_23"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805610748437-3s1aohg5obfr7sdk2m8cvh8chropgn38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqB5A_p5VCA30PhLhupxns3TUfUGp87Fc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805610748437-3s1aohg5obfr7sdk2m8cvh8chropgn38.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "805610748437-m2tt2n0pt7mrqus024buv4ik4nfkcar4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lakeside.imperial.addition23.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
