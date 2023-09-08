@@ -4,6 +4,8 @@ List<int> numGenerator() {
   Set<int> valueSet = Set.identity();
   List<int> valueList = List.empty(growable: true);
   int sum, tmp;
+  int min = -10;
+  int max = 30;
   int numOfSelect = randomIntWithRange(2, 6);
 
   do {
@@ -11,7 +13,7 @@ List<int> numGenerator() {
     valueSet.clear();
 
     do {
-      tmp = randomIntWithRange(-10, 30);
+      tmp = randomIntWithRange(min, max);
       valueSet.add(tmp);
     } while (valueSet.length != 5);
 
@@ -23,8 +25,8 @@ List<int> numGenerator() {
   } while (valueSet.length != 6 ||
       valueSet.contains(0) ||
       valueSet.contains(23) ||
-      23 - sum < -10 ||
-      23 - sum > 30);
+      23 - sum < min ||
+      23 - sum > max);
 
   valueList = valueSet.toList();
   valueList.shuffle();
