@@ -158,9 +158,13 @@ class _ReadyState extends State<Ready> {
                       ),
                       children: name.isEmpty != true
                           ? [
-                              TextSpan(
-                                text: '最速は、${name[0]} さんの ',
-                              ),
+                              name[0] != 'Anonymous'
+                                  ? TextSpan(
+                                      text: '最速は、${name[0]}さんの ',
+                                    )
+                                  : const TextSpan(
+                                      text: '最速記録は、 ',
+                                    ),
                               TextSpan(
                                 text: time[0],
                                 style: const TextStyle(
