@@ -292,10 +292,9 @@ class PlayState extends State<Play> {
                                       );
                                     } else {
                                       return Result(
-                                        minutes: int.parse(displayTimeMinute),
-                                        seconds: int.parse(displayTimeSecond),
-                                        milliSeconds:
-                                            int.parse(displayTimeMilliSecond),
+                                        minutes: displayTimeMinute,
+                                        seconds: displayTimeSecond,
+                                        milliSeconds: displayTimeMilliSecond,
                                       );
                                     }
                                   },

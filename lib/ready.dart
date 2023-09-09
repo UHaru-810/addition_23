@@ -1,11 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'components.dart';
 import 'play.dart';
 
-class Ready extends StatelessWidget {
+class Ready extends StatefulWidget {
   const Ready({super.key});
+
   static String name = "";
+
+  @override
+  State<Ready> createState() => _ReadyState();
+}
+
+class _ReadyState extends State<Ready> {
+  List name = [];
+  List time = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData(); // ページが表示されたらデータを取得する
+  }
+
+  Future<void> fetchData() async {
+    try {
+      var db = FirebaseFirestore.instance;
+      var querySnapshot =
+          await db.collection("users").orderBy("time").limit(1).get();
+      for (var docSnapshot in querySnapshot.docs) {
+        final data = docSnapshot.data();
+        setState(() {
+          name.add(data["name"].toString());
+          time.add(data["time"].toString());
+        });
+      }
+    } catch (e) {
+      const Text("データが取得できませんでした");
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +83,12 @@ class Ready extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: SizedBox(
-          width: 285,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 285,
+              child: TextField(
                 style: TextStyle(
                   color: ColorLibrary.text,
                   fontSize: 18,
@@ -92,55 +129,66 @@ class Ready extends StatelessWidget {
                 ),
                 cursorColor: ColorLibrary.themePrimary,
                 onChanged: (text) {
-                  name = text;
+                  Ready.name = text;
                 },
               ),
-              const SizedBox(height: 60),
-              Text(
-                '用意はいいですか？',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: ColorLibrary.themePrimary,
-                  fontWeight: FontWeight.w700,
-                ),
+            ),
+            const SizedBox(height: 60),
+            Text(
+              '用意はいいですか？',
+              style: TextStyle(
+                fontSize: 25,
+                color: ColorLibrary.themePrimary,
+                fontWeight: FontWeight.w700,
               ),
-              const SizedBox(height: 15),
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    color: ColorLibrary.text,
-                    fontFamily: 'NotoSansJP',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15,
-                  ),
-                  children: const [
-                    TextSpan(
-                      text: '最速記録は、〇〇さんの ',
-                    ),
-                    TextSpan(
-                      text: '23.00',
+            ),
+            const SizedBox(height: 15),
+            isLoading
+                ? CircularProgressIndicator(
+                    color: ColorLibrary.themePrimary,
+                  )
+                : RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
                       style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
+                        color: ColorLibrary.text,
+                        fontFamily: 'NotoSansJP',
+                        fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
+                      children: name.isEmpty != true
+                          ? [
+                              TextSpan(
+                                text: '最速は、${name[0]} さんの ',
+                              ),
+                              TextSpan(
+                                text: time[0],
+                                style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                ),
+                              ),
+                              const TextSpan(
+                                text: ' です。',
+                              ),
+                            ]
+                          : [
+                              const TextSpan(
+                                text: '最速記録を目指して頑張りましょう！',
+                              ),
+                            ],
                     ),
-                    TextSpan(
-                      text: ' 秒です。',
-                    ),
-                  ],
-                ),
+                  ),
+            const SizedBox(height: 60),
+            ButtonPrimary(
+              text: 'スタート！',
+              nextPage: Play.first(
+                progress: 1,
               ),
-              const SizedBox(height: 60),
-              ButtonPrimary(
-                text: 'スタート！',
-                nextPage: Play.first(
-                  progress: 1,
-                ),
-                transVertical: false,
-              ),
-            ],
-          ),
+              transVertical: false,
+            ),
+          ],
         ),
       ),
     );

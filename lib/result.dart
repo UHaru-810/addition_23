@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'components.dart';
 import 'home.dart';
 import 'ranking.dart';
 import 'ready.dart';
 
-class Result extends StatelessWidget {
+class Result extends StatefulWidget {
   const Result({
     super.key,
     required this.minutes,
@@ -13,7 +14,73 @@ class Result extends StatelessWidget {
     required this.milliSeconds,
   });
 
-  final int minutes, seconds, milliSeconds;
+  final String minutes, seconds, milliSeconds;
+
+  @override
+  State<Result> createState() => _ResultState();
+}
+
+class _ResultState extends State<Result> {
+  List name = [];
+  List time = [];
+  bool isLoading = true;
+  int rank = 1;
+  double tmpA = 0, tmpB = 0, dif = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+    setData(); //  // ページが表示されたらデータを取得する
+  }
+
+  Future<void> fetchData() async {
+    try {
+      var db = FirebaseFirestore.instance;
+      var querySnapshot = await db.collection("users").orderBy("time").get();
+      int index = 1;
+
+      for (var docSnapshot in querySnapshot.docs) {
+        final data = docSnapshot.data();
+        setState(() {
+          name.add(data["name"].toString());
+          time.add(data["time"].toString());
+        });
+        tmpA = (double.parse((data["time"][0]) + (data["time"][1]))) * 60 +
+            (double.parse((data["time"][3]) + (data["time"][4]))) +
+            (double.parse((data["time"][6]) + (data["time"][7]))) * 0.01;
+        tmpB = (double.parse(widget.minutes)) * 60 +
+            double.parse(widget.seconds) +
+            (double.parse(widget.milliSeconds)) * 0.01;
+        print('$tmpA : $tmpB');
+        tmpA <= tmpB ? rank = index : {};
+        index++;
+      }
+      dif = tmpB -
+          ((double.parse((time[0][0]) + (time[0][1]))) * 60 +
+              (double.parse((time[0][3]) + (time[0][4]))) +
+              (double.parse((time[0][6]) + (time[0][7]))) * 0.01);
+    } catch (e) {
+      const Text("データが取得できませんでした");
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  Future<void> setData() async {
+    try {
+      var db = FirebaseFirestore.instance;
+      final data = {
+        "name": Ready.name != '' ? Ready.name : 'Anonymous',
+        "time":
+            "${widget.minutes.padLeft(2, '0')}:${widget.seconds.padLeft(2, '0')}.${widget.milliSeconds.padLeft(2, '0')}"
+      };
+      await db.collection("users").add(data);
+    } catch (e) {
+      const Text("データを保存できませんでした");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +117,7 @@ class Result extends StatelessWidget {
                     height: 2),
               ),
               Text(
-                '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}.${milliSeconds.toString().padLeft(2, '0')}',
+                '${widget.minutes.padLeft(2, '0')}:${widget.seconds.padLeft(2, '0')}.${widget.milliSeconds.padLeft(2, '0')}',
                 style: TextStyle(
                   color: ColorLibrary.themePrimary,
                   fontFamily: 'Poppins',
@@ -63,7 +130,7 @@ class Result extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                '23位の記録です。\n1位まで、あと23.23秒です。',
+                '$rank位の記録です。\n1位まで、あと$dif秒です。',
                 style: TextStyle(
                     color: ColorLibrary.text,
                     fontFamily: 'NotoSansJP',
