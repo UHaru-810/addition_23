@@ -24,7 +24,7 @@ class _ResultState extends State<Result> {
   List name = [];
   List time = [];
   bool isLoading = true;
-  int rank = 0;
+  int rank = 1;
   double tmpNum = 0, playerNum = 0, dif = 0;
 
   @override
@@ -52,7 +52,7 @@ class _ResultState extends State<Result> {
         tmpNum = (double.parse((data["time"][0]) + (data["time"][1]))) * 60 +
             (double.parse((data["time"][3]) + (data["time"][4]))) +
             (double.parse((data["time"][6]) + (data["time"][7]))) * 0.01;
-        tmpNum == playerNum ? rank = index : {};
+        tmpNum <= playerNum ? rank = index : {};
         index++;
       }
       dif = playerNum -
