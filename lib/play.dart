@@ -252,79 +252,104 @@ class PlayState extends State<Play> {
                 itemCount: valueOnCards.length,
                 itemBuilder: (context, index) {
                   return TextButton(
-                    onPressed: () {
-                      HapticFeedback.selectionClick();
-                      Future.delayed(const Duration(milliseconds: 245), () {
-                        setState(() {
-                          if (backgroundColor[index] == ColorLibrary.white) {
-                            backgroundColor[index] =
-                                ColorLibrary.themeSecondary;
-                            overlayColor[index] = ColorLibrary.white;
-                            sum += valueOnCards[index];
-                          } else {
-                            backgroundColor[index] = ColorLibrary.white;
-                            overlayColor[index] = ColorLibrary.themeSecondary;
-                            borderColor[index] = ColorLibrary.themeSecondary;
-                            sum -= valueOnCards[index];
-                          }
-                          if (sum == 23) {
-                            for (int i = 0; i < 6; i++) {
-                              if (backgroundColor[i] ==
-                                  ColorLibrary.themeSecondary) {
-                                backgroundColor[i] = ColorLibrary.greenPrimary;
-                                borderColor[i] = ColorLibrary.greenSecondary;
-                              }
-                            }
-                            HapticFeedback.mediumImpact();
-                            widget.progress == 10
-                                ? widget.stopWatchTimer!.onStopTimer()
-                                : {};
-                            Future.delayed(const Duration(milliseconds: 500),
+                    onPressed: isButtonEnabled
+                        ? () {
+                            HapticFeedback.selectionClick();
+                            Future.delayed(const Duration(milliseconds: 245),
                                 () {
-                              Navigator.of(context).push(
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation, secondaryAnimation) {
-                                    if (widget.progress < 10) {
-                                      return Play(
-                                        progress: widget.progress + 1,
-                                        stopWatchTimer: widget.stopWatchTimer,
-                                      );
-                                    } else {
-                                      return Result(
-                                        minutes: displayTimeMinute,
-                                        seconds: displayTimeSecond,
-                                        milliSeconds: displayTimeMilliSecond,
-                                      );
-                                    }
-                                  },
-                                  transitionsBuilder: (context, animation,
-                                      secondaryAnimation, child) {
-                                    const Offset begin =
-                                        Offset(1.0, 0.0); // 右から左
-                                    // final Offset begin = Offset(-1.0, 0.0); // 左から右
-                                    const Offset end = Offset.zero;
-                                    final Animatable<Offset> tween =
-                                        Tween(begin: begin, end: end).chain(
-                                            CurveTween(
-                                                curve: Curves.easeInOut));
-                                    final Animation<Offset> offsetAnimation =
-                                        animation.drive(tween);
-                                    return SlideTransition(
-                                      position: offsetAnimation,
-                                      child: child,
-                                    );
-                                  },
-                                  transitionDuration:
-                                      const Duration(milliseconds: 200),
-                                ),
-                              );
+                              isButtonEnabled
+                                  ? setState(() {
+                                      if (backgroundColor[index] ==
+                                          ColorLibrary.white) {
+                                        backgroundColor[index] =
+                                            ColorLibrary.themeSecondary;
+                                        overlayColor[index] =
+                                            ColorLibrary.white;
+                                        sum += valueOnCards[index];
+                                      } else {
+                                        backgroundColor[index] =
+                                            ColorLibrary.white;
+                                        overlayColor[index] =
+                                            ColorLibrary.themeSecondary;
+                                        borderColor[index] =
+                                            ColorLibrary.themeSecondary;
+                                        sum -= valueOnCards[index];
+                                      }
+                                      if (sum == 23) {
+                                        isButtonEnabled = false;
+                                        for (int i = 0; i < 6; i++) {
+                                          if (backgroundColor[i] ==
+                                              ColorLibrary.themeSecondary) {
+                                            backgroundColor[i] =
+                                                ColorLibrary.greenPrimary;
+                                            borderColor[i] =
+                                                ColorLibrary.greenSecondary;
+                                          }
+                                        }
+                                        HapticFeedback.mediumImpact();
+                                        widget.progress == 10
+                                            ? widget.stopWatchTimer!
+                                                .onStopTimer()
+                                            : {};
+                                        Future.delayed(
+                                            const Duration(milliseconds: 500),
+                                            () {
+                                          Navigator.of(context).push(
+                                            PageRouteBuilder(
+                                              pageBuilder: (context, animation,
+                                                  secondaryAnimation) {
+                                                if (widget.progress < 10) {
+                                                  return Play(
+                                                    progress:
+                                                        widget.progress + 1,
+                                                    stopWatchTimer:
+                                                        widget.stopWatchTimer,
+                                                  );
+                                                } else {
+                                                  return Result(
+                                                    minutes: displayTimeMinute,
+                                                    seconds: displayTimeSecond,
+                                                    milliSeconds:
+                                                        displayTimeMilliSecond,
+                                                  );
+                                                }
+                                              },
+                                              transitionsBuilder: (context,
+                                                  animation,
+                                                  secondaryAnimation,
+                                                  child) {
+                                                const Offset begin =
+                                                    Offset(1.0, 0.0); // 右から左
+                                                // final Offset begin = Offset(-1.0, 0.0); // 左から右
+                                                const Offset end = Offset.zero;
+                                                final Animatable<Offset> tween =
+                                                    Tween(
+                                                            begin: begin,
+                                                            end: end)
+                                                        .chain(CurveTween(
+                                                            curve: Curves
+                                                                .easeInOut));
+                                                final Animation<Offset>
+                                                    offsetAnimation =
+                                                    animation.drive(tween);
+                                                return SlideTransition(
+                                                  position: offsetAnimation,
+                                                  child: child,
+                                                );
+                                              },
+                                              transitionDuration:
+                                                  const Duration(
+                                                      milliseconds: 200),
+                                            ),
+                                          );
+                                        });
+                                      }
+                                    })
+                                  : () {};
+                              print(sum);
                             });
                           }
-                        });
-                        print(sum);
-                      });
-                    },
+                        : null,
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(backgroundColor[index]),
