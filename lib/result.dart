@@ -24,7 +24,7 @@ class _ResultState extends State<Result> {
   List name = [];
   List time = [];
   bool isLoading = true;
-  int rank = 0;
+  int rank = 1;
   double tmpNum = 0, playerNum = 0, dif = 0;
 
   @override
