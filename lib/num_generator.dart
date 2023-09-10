@@ -29,7 +29,7 @@ List<int> numGenerator() {
       23 - sum > max);
 
   valueList = valueSet.toList();
-  valueList.shuffle();
+  // valueList.shuffle();
 
   return valueList;
 }
