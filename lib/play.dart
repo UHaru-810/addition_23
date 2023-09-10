@@ -346,7 +346,7 @@ class PlayState extends State<Play> {
                                       }
                                     })
                                   : () {};
-                              print(sum);
+                              // print(sum);
                             });
                           }
                         : null,
