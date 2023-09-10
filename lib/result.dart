@@ -24,14 +24,17 @@ class _ResultState extends State<Result> {
   List name = [];
   List time = [];
   bool isLoading = true;
-  int rank = 1;
-  double tmpA = 0, tmpB = 0, dif = 0;
+  int rank = 0;
+  double tmpNum = 0, playerNum = 0, dif = 0;
 
   @override
   void initState() {
+    playerNum = (double.parse(widget.minutes)) * 60 +
+        double.parse(widget.seconds) +
+        (double.parse(widget.milliSeconds)) * 0.01;
     super.initState();
-    fetchData();
-    setData(); //  // ページが表示されたらデータを取得する
+    setData();
+    fetchData(); //  // ページが表示されたらデータを取得する
   }
 
   Future<void> fetchData() async {
@@ -43,23 +46,20 @@ class _ResultState extends State<Result> {
       for (var docSnapshot in querySnapshot.docs) {
         final data = docSnapshot.data();
         setState(() {
-          name.add(data["name"].toString());
-          time.add(data["time"].toString());
+          name.add(data["name"]);
+          time.add(data["time"]);
         });
-        tmpA = (double.parse((data["time"][0]) + (data["time"][1]))) * 60 +
+        tmpNum = (double.parse((data["time"][0]) + (data["time"][1]))) * 60 +
             (double.parse((data["time"][3]) + (data["time"][4]))) +
             (double.parse((data["time"][6]) + (data["time"][7]))) * 0.01;
-        tmpB = (double.parse(widget.minutes)) * 60 +
-            double.parse(widget.seconds) +
-            (double.parse(widget.milliSeconds)) * 0.01;
-        print('$tmpA : $tmpB');
-        tmpA <= tmpB ? rank = index : {};
+        print('$tmpNum : $playerNum');
+        tmpNum == playerNum ? rank = index : {};
         index++;
       }
-      dif = tmpB -
-          ((double.parse((time[0][0]) + (time[0][1]))) * 60 +
-              (double.parse((time[0][3]) + (time[0][4]))) +
-              (double.parse((time[0][6]) + (time[0][7]))) * 0.01);
+      dif = playerNum -
+          ((double.parse(((time[0])[0]) + ((time[0])[1]))) * 60 +
+              (double.parse(((time[0])[3]) + ((time[0])[4]))) +
+              (double.parse(((time[0])[6]) + ((time[0])[7]))) * 0.01);
     } catch (e) {
       const Text("データが取得できませんでした");
     }
@@ -130,7 +130,9 @@ class _ResultState extends State<Result> {
                 height: 10,
               ),
               Text(
-                '$rank位の記録です。\n1位まで、あと$dif秒です。',
+                rank == 1
+                    ? '$rank位の記録です。\nおめでとうございます！'
+                    : '$rank位の記録です。\n1位まで、あと ${dif.toStringAsFixed(2)}秒 です。',
                 style: TextStyle(
                     color: ColorLibrary.text,
                     fontFamily: 'NotoSansJP',
