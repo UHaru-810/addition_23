@@ -52,7 +52,6 @@ class _ResultState extends State<Result> {
         tmpNum = (double.parse((data["time"][0]) + (data["time"][1]))) * 60 +
             (double.parse((data["time"][3]) + (data["time"][4]))) +
             (double.parse((data["time"][6]) + (data["time"][7]))) * 0.01;
-        print('$tmpNum : $playerNum');
         tmpNum == playerNum ? rank = index : {};
         index++;
       }
