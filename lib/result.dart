@@ -24,7 +24,7 @@ class _ResultState extends State<Result> {
   List name = [];
   List time = [];
   bool isLoading = true;
-  int rank = 1;
+  int rank = 0;
   double tmpNum = 0, playerNum = 0, dif = 0;
 
   @override
@@ -33,8 +33,8 @@ class _ResultState extends State<Result> {
         double.parse(widget.seconds) +
         (double.parse(widget.milliSeconds)) * 0.01;
     super.initState();
-    setData();
     fetchData(); //  // ページが表示されたらデータを取得する
+    setData();
   }
 
   Future<void> fetchData() async {
