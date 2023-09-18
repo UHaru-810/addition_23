@@ -50,6 +50,12 @@ class PlayState extends State<Play> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double buttonSize = deviceHeight < 700 || deviceWidth > 500
+        ? ((deviceHeight * 0.37 - deviceHeight * 0.055) / 2)
+        : ((deviceHeight * 0.33 - deviceHeight * 0.059) / 2);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorLibrary.white,
@@ -182,8 +188,7 @@ class PlayState extends State<Play> {
           highlightColor: ColorLibrary.themeSecondary,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 20.0),
+      body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -217,7 +222,7 @@ class PlayState extends State<Play> {
                         color: ColorLibrary.themePrimary,
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.w700,
-                        fontSize: 50,
+                        fontSize: deviceHeight < 700 ? deviceHeight * 0.07 : 50,
                         height: 1.5),
                   );
                 },
@@ -245,10 +250,20 @@ class PlayState extends State<Play> {
                   ],
                 ),
               ),
-              const Spacer(),
+              deviceHeight < 1000
+                  ? const Spacer()
+                  : const SizedBox(
+                      height: 60,
+                    ),
               SizedBox(
-                width: 280,
-                height: 415,
+                width: deviceHeight < 700 || deviceWidth > 500
+                    ? deviceHeight < 950
+                        ? deviceHeight * 0.37
+                        : 351.5
+                    : deviceHeight * 0.33,
+                height: deviceHeight < 950
+                    ? buttonSize * 3 + deviceHeight * 0.04 * 2
+                    : 524.875,
                 child: GridView.builder(
                   itemCount: valueOnCards.length,
                   itemBuilder: (context, index) {
@@ -378,16 +393,25 @@ class PlayState extends State<Play> {
                           color: ColorLibrary.text,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w700,
-                          fontSize: 35,
+                          fontSize: deviceHeight > 700
+                              ? deviceHeight > 900
+                                  ? 40
+                                  : buttonSize * 0.3
+                              : 33,
                         ),
                       ),
                     );
                   },
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisSpacing: 35,
-                    crossAxisSpacing: 50,
-                    childAspectRatio: 1.0,
+                    mainAxisSpacing:
+                        deviceHeight < 950 ? deviceHeight * 0.04 : 38,
+                    crossAxisSpacing: deviceHeight < 700 || deviceWidth > 500
+                        ? deviceHeight < 950
+                            ? deviceHeight * 0.055
+                            : 52.25
+                        : deviceHeight * 0.059,
+                    childAspectRatio: 1,
                   ),
                   physics: const NeverScrollableScrollPhysics(),
                 ),
