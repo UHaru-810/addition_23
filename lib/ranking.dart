@@ -24,7 +24,7 @@ class RankingState extends State<Ranking> {
     try {
       var db = FirebaseFirestore.instance;
       var querySnapshot =
-          await db.collection("users").orderBy("time").limit(500).get();
+          await db.collection("users").orderBy("time").limit(999).get();
       for (var docSnapshot in querySnapshot.docs) {
         final data = docSnapshot.data();
         setState(() {
