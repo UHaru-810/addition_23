@@ -394,7 +394,7 @@ class PlayState extends State<Play> {
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w700,
                           fontSize: deviceHeight > 700
-                              ? deviceHeight > 900
+                              ? deviceHeight > 950
                                   ? 40
                                   : buttonSize * 0.3
                               : 33,
