@@ -101,10 +101,6 @@ flutter:
          weight: 600
        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
          weight: 700
-       - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
-         weight: 800
-       - asset: assets/fonts/Poppins/Poppins-Black.ttf
-         weight: 900
    - family: Roboto
      fonts:
        - asset: assets/fonts/Noto_Sans_Mono/NotoSansMono-ExtraBold.ttf
