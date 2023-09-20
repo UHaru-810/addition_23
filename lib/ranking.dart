@@ -24,7 +24,7 @@ class RankingState extends State<Ranking> {
     try {
       var db = FirebaseFirestore.instance;
       var querySnapshot =
-          await db.collection("users").orderBy("time").limit(500).get();
+          await db.collection("users").orderBy("time").limit(999).get();
       for (var docSnapshot in querySnapshot.docs) {
         final data = docSnapshot.data();
         setState(() {
@@ -42,6 +42,9 @@ class RankingState extends State<Ranking> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorLibrary.white,
@@ -88,9 +91,9 @@ class RankingState extends State<Ranking> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      top: 23.0,
-                      bottom: 8.0,
+                    padding: EdgeInsets.only(
+                      top: deviceHeight < 850 ? deviceHeight * 0.027 : 23,
+                      bottom: deviceHeight < 850 ? deviceHeight * 0.01 : 8,
                       left: 30,
                     ),
                     child: Row(
@@ -143,11 +146,15 @@ class RankingState extends State<Ranking> {
                           itemExtent: 105.0,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
-                              margin: const EdgeInsets.only(
+                              margin: EdgeInsets.only(
                                 top: 10,
                                 bottom: 10,
-                                left: 30,
-                                right: 23,
+                                left: deviceWidth < 600
+                                    ? deviceWidth * 0.075
+                                    : 45,
+                                right: deviceWidth < 600
+                                    ? deviceWidth * 0.058
+                                    : 35,
                               ),
                               decoration: index == 0
                                   ? BoxDecoration(

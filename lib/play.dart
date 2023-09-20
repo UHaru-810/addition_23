@@ -50,6 +50,12 @@ class PlayState extends State<Play> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double buttonSize = deviceHeight < 700 || deviceWidth > 500
+        ? ((deviceHeight * 0.37 - deviceHeight * 0.055) / 2)
+        : ((deviceHeight * 0.33 - deviceHeight * 0.059) / 2);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorLibrary.white,
@@ -182,215 +188,237 @@ class PlayState extends State<Play> {
           highlightColor: ColorLibrary.themeSecondary,
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "足して23を作ろう！",
-              style: TextStyle(
-                color: ColorLibrary.text,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            StreamBuilder<int>(
-              stream: widget.stopWatchTimer!.rawTime,
-              initialData: widget.stopWatchTimer!.rawTime.value,
-              builder: (context, snapshot) {
-                displayTimeMinute = StopWatchTimer.getDisplayTimeMinute(
-                  snapshot.data!,
-                );
-                displayTimeSecond = StopWatchTimer.getDisplayTimeSecond(
-                  snapshot.data!,
-                );
-                displayTimeMilliSecond =
-                    StopWatchTimer.getDisplayTimeMillisecond(
-                  snapshot.data!,
-                );
-                return Text(
-                  '$displayTimeMinute:$displayTimeSecond.$displayTimeMilliSecond',
-                  style: TextStyle(
-                      color: ColorLibrary.themePrimary,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 50,
-                      height: 1.5),
-                );
-              },
-            ),
-            RichText(
-              text: TextSpan(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Text(
+                "足して23を作ろう！",
                 style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
                   color: ColorLibrary.text,
-                  height: 2,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
                 ),
-                children: [
-                  TextSpan(
-                    text: '${widget.progress.toString()} / 10',
-                    style: const TextStyle(fontSize: 24),
-                  ),
-                  const TextSpan(
-                    text: '  問目',
-                    style: TextStyle(
-                      fontFamily: 'NotoSansJP',
-                      fontSize: 18,
-                    ),
-                  ),
-                ],
               ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            SizedBox(
-              width: 280,
-              height: 415,
-              child: GridView.builder(
-                itemCount: valueOnCards.length,
-                itemBuilder: (context, index) {
-                  return TextButton(
-                    onPressed: isButtonEnabled
-                        ? () {
-                            HapticFeedback.selectionClick();
-                            Future.delayed(const Duration(milliseconds: 245),
-                                () {
-                              isButtonEnabled
-                                  ? setState(() {
-                                      if (backgroundColor[index] ==
-                                          ColorLibrary.white) {
-                                        backgroundColor[index] =
-                                            ColorLibrary.themeSecondary;
-                                        overlayColor[index] =
-                                            ColorLibrary.white;
-                                        sum += valueOnCards[index];
-                                      } else {
-                                        backgroundColor[index] =
-                                            ColorLibrary.white;
-                                        overlayColor[index] =
-                                            ColorLibrary.themeSecondary;
-                                        borderColor[index] =
-                                            ColorLibrary.themeSecondary;
-                                        sum -= valueOnCards[index];
-                                      }
-                                      if (sum == 23) {
-                                        isButtonEnabled = false;
-                                        for (int i = 0; i < 6; i++) {
-                                          if (backgroundColor[i] ==
-                                              ColorLibrary.themeSecondary) {
-                                            backgroundColor[i] =
-                                                ColorLibrary.greenPrimary;
-                                            borderColor[i] =
-                                                ColorLibrary.greenSecondary;
-                                          }
-                                        }
-                                        HapticFeedback.mediumImpact();
-                                        widget.progress == 10
-                                            ? widget.stopWatchTimer!
-                                                .onStopTimer()
-                                            : {};
-                                        Future.delayed(
-                                            const Duration(milliseconds: 500),
-                                            () {
-                                          Navigator.of(context).push(
-                                            PageRouteBuilder(
-                                              pageBuilder: (context, animation,
-                                                  secondaryAnimation) {
-                                                if (widget.progress < 10) {
-                                                  return Play(
-                                                    progress:
-                                                        widget.progress + 1,
-                                                    stopWatchTimer:
-                                                        widget.stopWatchTimer,
-                                                  );
-                                                } else {
-                                                  return Result(
-                                                    minutes: displayTimeMinute,
-                                                    seconds: displayTimeSecond,
-                                                    milliSeconds:
-                                                        displayTimeMilliSecond,
-                                                  );
-                                                }
-                                              },
-                                              transitionsBuilder: (context,
-                                                  animation,
-                                                  secondaryAnimation,
-                                                  child) {
-                                                const Offset begin =
-                                                    Offset(1.0, 0.0); // 右から左
-                                                // final Offset begin = Offset(-1.0, 0.0); // 左から右
-                                                const Offset end = Offset.zero;
-                                                final Animatable<Offset> tween =
-                                                    Tween(
-                                                            begin: begin,
-                                                            end: end)
-                                                        .chain(CurveTween(
-                                                            curve: Curves
-                                                                .easeInOut));
-                                                final Animation<Offset>
-                                                    offsetAnimation =
-                                                    animation.drive(tween);
-                                                return SlideTransition(
-                                                  position: offsetAnimation,
-                                                  child: child,
-                                                );
-                                              },
-                                              transitionDuration:
-                                                  const Duration(
-                                                      milliseconds: 200),
-                                            ),
-                                          );
-                                        });
-                                      }
-                                    })
-                                  : () {};
-                              // print(sum);
-                            });
-                          }
-                        : null,
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(backgroundColor[index]),
-                      overlayColor:
-                          MaterialStateProperty.all(overlayColor[index]),
-                    ).merge(
-                      TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        side: BorderSide(
-                          color: borderColor[index],
-                          width: 1.5,
-                        ),
-                        splashFactory: InkRipple.splashFactory,
-                      ),
-                    ),
-                    child: Text(
-                      valueOnCards[index].toString(),
-                      style: TextStyle(
-                        color: ColorLibrary.text,
-                        fontFamily: 'Poppins',
+              StreamBuilder<int>(
+                stream: widget.stopWatchTimer!.rawTime,
+                initialData: widget.stopWatchTimer!.rawTime.value,
+                builder: (context, snapshot) {
+                  displayTimeMinute = StopWatchTimer.getDisplayTimeMinute(
+                    snapshot.data!,
+                  );
+                  displayTimeSecond = StopWatchTimer.getDisplayTimeSecond(
+                    snapshot.data!,
+                  );
+                  displayTimeMilliSecond =
+                      StopWatchTimer.getDisplayTimeMillisecond(
+                    snapshot.data!,
+                  );
+                  return Text(
+                    '$displayTimeMinute:$displayTimeSecond.$displayTimeMilliSecond',
+                    style: TextStyle(
+                        color: ColorLibrary.themePrimary,
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w700,
-                        fontSize: 35,
-                      ),
-                    ),
+                        fontSize: deviceHeight < 700 ? deviceHeight * 0.07 : 50,
+                        height: 1.5),
                   );
                 },
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 35,
-                  crossAxisSpacing: 50,
-                  childAspectRatio: 1.0,
-                ),
-                physics: const NeverScrollableScrollPhysics(),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
+              RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    color: ColorLibrary.text,
+                    height: 2,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: '${widget.progress.toString()} / 10',
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                    const TextSpan(
+                      text: '  問目',
+                      style: TextStyle(
+                        fontFamily: 'NotoSansJP',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              deviceHeight < 1000
+                  ? const Spacer()
+                  : const SizedBox(
+                      height: 60,
+                    ),
+              SizedBox(
+                width: deviceHeight < 700 || deviceWidth > 500
+                    ? deviceHeight < 950
+                        ? deviceHeight * 0.37
+                        : 351.5
+                    : deviceHeight * 0.33,
+                height: deviceHeight < 950
+                    ? buttonSize * 3 + deviceHeight * 0.04 * 2
+                    : 524.875,
+                child: GridView.builder(
+                  itemCount: valueOnCards.length,
+                  itemBuilder: (context, index) {
+                    return TextButton(
+                      onPressed: isButtonEnabled
+                          ? () {
+                              HapticFeedback.selectionClick();
+                              Future.delayed(const Duration(milliseconds: 245),
+                                  () {
+                                isButtonEnabled
+                                    ? setState(() {
+                                        if (backgroundColor[index] ==
+                                            ColorLibrary.white) {
+                                          backgroundColor[index] =
+                                              ColorLibrary.themeSecondary;
+                                          overlayColor[index] =
+                                              ColorLibrary.white;
+                                          sum += valueOnCards[index];
+                                        } else {
+                                          backgroundColor[index] =
+                                              ColorLibrary.white;
+                                          overlayColor[index] =
+                                              ColorLibrary.themeSecondary;
+                                          borderColor[index] =
+                                              ColorLibrary.themeSecondary;
+                                          sum -= valueOnCards[index];
+                                        }
+                                        if (sum == 23) {
+                                          isButtonEnabled = false;
+                                          for (int i = 0; i < 6; i++) {
+                                            if (backgroundColor[i] ==
+                                                ColorLibrary.themeSecondary) {
+                                              backgroundColor[i] =
+                                                  ColorLibrary.greenPrimary;
+                                              borderColor[i] =
+                                                  ColorLibrary.greenSecondary;
+                                            }
+                                          }
+                                          HapticFeedback.mediumImpact();
+                                          widget.progress == 10
+                                              ? widget.stopWatchTimer!
+                                                  .onStopTimer()
+                                              : {};
+                                          Future.delayed(
+                                              const Duration(milliseconds: 500),
+                                              () {
+                                            Navigator.of(context).push(
+                                              PageRouteBuilder(
+                                                pageBuilder: (context,
+                                                    animation,
+                                                    secondaryAnimation) {
+                                                  if (widget.progress < 10) {
+                                                    return Play(
+                                                      progress:
+                                                          widget.progress + 1,
+                                                      stopWatchTimer:
+                                                          widget.stopWatchTimer,
+                                                    );
+                                                  } else {
+                                                    return Result(
+                                                      minutes:
+                                                          displayTimeMinute,
+                                                      seconds:
+                                                          displayTimeSecond,
+                                                      milliSeconds:
+                                                          displayTimeMilliSecond,
+                                                    );
+                                                  }
+                                                },
+                                                transitionsBuilder: (context,
+                                                    animation,
+                                                    secondaryAnimation,
+                                                    child) {
+                                                  const Offset begin =
+                                                      Offset(1.0, 0.0); // 右から左
+                                                  // final Offset begin = Offset(-1.0, 0.0); // 左から右
+                                                  const Offset end =
+                                                      Offset.zero;
+                                                  final Animatable<Offset>
+                                                      tween = Tween(
+                                                              begin: begin,
+                                                              end: end)
+                                                          .chain(CurveTween(
+                                                              curve: Curves
+                                                                  .easeInOut));
+                                                  final Animation<Offset>
+                                                      offsetAnimation =
+                                                      animation.drive(tween);
+                                                  return SlideTransition(
+                                                    position: offsetAnimation,
+                                                    child: child,
+                                                  );
+                                                },
+                                                transitionDuration:
+                                                    const Duration(
+                                                        milliseconds: 200),
+                                              ),
+                                            );
+                                          });
+                                        }
+                                      })
+                                    : () {};
+                                // print(sum);
+                              });
+                            }
+                          : null,
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(backgroundColor[index]),
+                        overlayColor:
+                            MaterialStateProperty.all(overlayColor[index]),
+                      ).merge(
+                        TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          side: BorderSide(
+                            color: borderColor[index],
+                            width: 1.5,
+                          ),
+                          splashFactory: InkRipple.splashFactory,
+                        ),
+                      ),
+                      child: Text(
+                        valueOnCards[index].toString(),
+                        style: TextStyle(
+                          color: ColorLibrary.text,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w700,
+                          fontSize: deviceHeight > 700
+                              ? deviceHeight > 950
+                                  ? 40
+                                  : buttonSize * 0.3
+                              : 32,
+                        ),
+                      ),
+                    );
+                  },
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing:
+                        deviceHeight < 950 ? deviceHeight * 0.04 : 38,
+                    crossAxisSpacing: deviceHeight < 700 || deviceWidth > 500
+                        ? deviceHeight < 950
+                            ? deviceHeight * 0.055
+                            : 52.25
+                        : deviceHeight * 0.059,
+                    childAspectRatio: 1,
+                  ),
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ),
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );

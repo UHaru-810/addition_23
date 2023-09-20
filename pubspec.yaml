@@ -83,12 +83,6 @@ flutter:
   fonts:
    - family: NotoSansJP
      fonts:
-       - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Thin.ttf
-         weight: 100
-       - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-ExtraLight.ttf
-         weight: 200
-       - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Light.ttf
-         weight: 300
        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Regular.ttf
          weight: 400
        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Medium.ttf
@@ -97,18 +91,8 @@ flutter:
          weight: 600
        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Bold.ttf
          weight: 700
-       - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-ExtraBold.ttf
-         weight: 800
-       - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Black.ttf
-         weight: 900
    - family: Poppins
      fonts:
-       - asset: assets/fonts/Poppins/Poppins-Thin.ttf
-         weight: 100
-       - asset: assets/fonts/Poppins/Poppins-ExtraLight.ttf
-         weight: 200
-       - asset: assets/fonts/Poppins/Poppins-Light.ttf
-         weight: 300
        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
          weight: 400
        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
@@ -117,37 +101,6 @@ flutter:
          weight: 600
        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
          weight: 700
-       - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
-         weight: 800
-       - asset: assets/fonts/Poppins/Poppins-Black.ttf
-         weight: 900
-       - asset: assets/fonts/Poppins/Poppins-ThinItalic.ttf
-         weight: 100
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-ExtraLightItalic.ttf
-         weight: 200
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-LightItalic.ttf
-         weight: 300
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-Italic.ttf
-         weight: 400
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-MediumItalic.ttf
-         weight: 500
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf
-         weight: 600
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-BoldItalic.ttf
-         weight: 700
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf
-         weight: 800
-         style: italic
-       - asset: assets/fonts/Poppins/Poppins-BlackItalic.ttf
-         weight: 900
-         style: italic
    - family: Roboto
      fonts:
        - asset: assets/fonts/Noto_Sans_Mono/NotoSansMono-ExtraBold.ttf
@@ -157,6 +110,7 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/app-icon/app-icon.png"
+  adaptive_icon_background: "#F1F4F8"
 
 flutter_native_splash:
   image: 'assets/app-icon/app-icon_splash.png'
