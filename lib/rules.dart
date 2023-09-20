@@ -58,88 +58,86 @@ class Rules extends StatelessWidget {
           highlightColor: ColorLibrary.themeSecondary,
         ),
       ),
-      body: SafeArea(
-        child: Center(
-          child: SizedBox(
-            width: 285,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Ink(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
+      body: Center(
+        child: SizedBox(
+          width: 285,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Ink(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorLibrary.themePrimary,
+                    ),
+                    child: SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        size: 25,
+                        color: ColorLibrary.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Container(
+                    height: 55,
+                    alignment: const Alignment(0, -0.5),
+                    child: Text(
+                      '遊び方',
+                      style: TextStyle(
                         color: ColorLibrary.themePrimary,
-                      ),
-                      child: SizedBox(
-                        width: 40,
-                        height: 40,
-                        child: Icon(
-                          Icons.play_arrow_rounded,
-                          size: 25,
-                          color: ColorLibrary.white,
-                        ),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 30,
                       ),
                     ),
-                    const SizedBox(width: 15),
-                    Container(
-                      height: 55,
-                      alignment: const Alignment(0, -0.5),
-                      child: Text(
-                        '遊び方',
-                        style: TextStyle(
-                          color: ColorLibrary.themePrimary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  "❶ プレイを開始する",
-                  style: headTextStyle,
-                ),
-                Text(
-                  "名前を入力してスタートします。\n※ 名前はランク表に記載(公開)されます。",
-                  style: captionTextStyle,
-                ),
-                const SizedBox(height: 25),
-                Text(
-                  "❷ 和を23にする",
-                  style: headTextStyle,
-                ),
-                Text(
-                  "数字の和が 23 になるように、画面に表示されるカードを選択します。",
-                  style: captionTextStyle,
-                ),
-                const SizedBox(height: 25),
-                Text(
-                  "❸ 速いタイムを目指す",
-                  style: headTextStyle,
-                ),
-                Text(
-                  "10問を解くのにかかるタイムを競います。",
-                  style: captionTextStyle,
-                ),
-                const SizedBox(height: 50),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ButtonPrimary(
-                      text: 'プレイを開始',
-                      nextPage: Ready(),
-                      transVertical: true,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                "❶ プレイを開始する",
+                style: headTextStyle,
+              ),
+              Text(
+                "名前を入力してスタートします。\n※ 名前はランク表に記載(公開)されます。",
+                style: captionTextStyle,
+              ),
+              const SizedBox(height: 25),
+              Text(
+                "❷ 和を23にする",
+                style: headTextStyle,
+              ),
+              Text(
+                "数字の和が 23 になるように、画面に表示されるカードを選択します。",
+                style: captionTextStyle,
+              ),
+              const SizedBox(height: 25),
+              Text(
+                "❸ 速いタイムを目指す",
+                style: headTextStyle,
+              ),
+              Text(
+                "10問を解くのにかかるタイムを競います。",
+                style: captionTextStyle,
+              ),
+              const SizedBox(height: 50),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ButtonPrimary(
+                    text: 'プレイを開始',
+                    nextPage: Ready(),
+                    transVertical: true,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
