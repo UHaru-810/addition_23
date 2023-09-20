@@ -105,7 +105,7 @@ class Rules extends StatelessWidget {
                 style: headTextStyle,
               ),
               Text(
-                "名前を入力してスタートします。",
+                "名前を入力してスタートします。\n名前はランク表に記載(公開)されます。",
                 style: captionTextStyle,
               ),
               const SizedBox(height: 25),
