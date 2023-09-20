@@ -397,7 +397,7 @@ class PlayState extends State<Play> {
                               ? deviceHeight > 950
                                   ? 40
                                   : buttonSize * 0.3
-                              : 33,
+                              : 32,
                         ),
                       ),
                     );
