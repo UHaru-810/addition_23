@@ -203,7 +203,7 @@ class RankingState extends State<Ranking> {
                                             : ColorLibrary.gray,
                                         fontFamily: 'Poppins',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 20,
+                                        fontSize: index + 1 < 100 ? 20 : 17,
                                       ),
                                     ),
                                   ),
