@@ -11,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  ); // Firebase初期化
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, //縦固定
