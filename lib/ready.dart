@@ -24,6 +24,7 @@ class _ReadyState extends State<Ready> {
     fetchData(); // ページが表示されたらデータを取得する
   }
 
+  // データ取得
   Future<void> fetchData() async {
     try {
       var db = FirebaseFirestore.instance;
@@ -146,7 +147,7 @@ class _ReadyState extends State<Ready> {
             isLoading
                 ? CircularProgressIndicator(
                     color: ColorLibrary.themePrimary,
-                  )
+                  ) // ローディング
                 : RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(

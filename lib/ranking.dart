@@ -20,6 +20,7 @@ class RankingState extends State<Ranking> {
     fetchData(); // ページが表示されたらデータを取得する
   }
 
+  // データ取得
   Future<void> fetchData() async {
     try {
       var db = FirebaseFirestore.instance;
@@ -42,6 +43,7 @@ class RankingState extends State<Ranking> {
 
   @override
   Widget build(BuildContext context) {
+    // メディアクエリ取得
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
 

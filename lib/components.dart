@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 配色設定
 class ColorLibrary {
   static Color themePrimary = const Color(0xff3388FF);
   static Color themeSecondary = const Color(0xffE1E9F4);
@@ -13,6 +14,7 @@ class ColorLibrary {
   static Color white = const Color(0xffFFFFFF);
 }
 
+// 主要ボタン
 class ButtonPrimary extends StatelessWidget {
   const ButtonPrimary(
       {super.key,
@@ -44,6 +46,7 @@ class ButtonPrimary extends StatelessWidget {
         onPressed: () {
           if (transVertical == true) {
             Navigator.of(context).push(
+              // 画面遷移アニメーション
               PageRouteBuilder(
                 pageBuilder: (context, animation, secondaryAnimation) {
                   return nextPage;
@@ -67,6 +70,7 @@ class ButtonPrimary extends StatelessWidget {
             );
           } else {
             Navigator.of(context).push(
+              // 画面遷移アニメーション
               PageRouteBuilder(
                 pageBuilder: (context, animation, secondaryAnimation) {
                   return nextPage;
@@ -98,7 +102,7 @@ class ButtonPrimary extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            splashFactory: InkSparkle.splashFactory,
+            splashFactory: InkSparkle.splashFactory, // エフェクト設定
           ),
         ),
         child: Row(
@@ -152,6 +156,7 @@ class ButtonSecondary extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 PageRouteBuilder(
+                  // 画面遷移アニメーション
                   pageBuilder: (context, animation, secondaryAnimation) {
                     return nextPage;
                   },

@@ -21,6 +21,7 @@ class Rules extends StatelessWidget {
       fontSize: 15,
       height: 2,
     );
+    // テキストスタイルを定義
 
     return Scaffold(
       appBar: AppBar(
@@ -43,7 +44,7 @@ class Rules extends StatelessWidget {
             backgroundColor: ColorLibrary.themeSecondary,
             valueColor:
                 AlwaysStoppedAnimation<Color>(ColorLibrary.themeTertiary),
-          ),
+          ), // スクロールバー
         ),
         leading: IconButton(
           onPressed: () {

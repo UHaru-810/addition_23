@@ -29,6 +29,7 @@ class PlayState extends State<Play> {
       List.filled(6, ColorLibrary.themeSecondary, growable: true);
   List<Color> borderColor =
       List.filled(6, ColorLibrary.themeSecondary, growable: true);
+  // ボタンの各要素の色設定
 
   int sum = 0;
   String displayTimeMinute = "";
@@ -54,7 +55,8 @@ class PlayState extends State<Play> {
     double deviceHeight = MediaQuery.of(context).size.height;
     double buttonSize = deviceHeight < 700 || deviceWidth > 500
         ? ((deviceHeight * 0.37 - deviceHeight * 0.055) / 2)
-        : ((deviceHeight * 0.33 - deviceHeight * 0.059) / 2);
+        : ((deviceHeight * 0.33 - deviceHeight * 0.059) /
+            2); // デバイスサイズに応じたボタンサイズを計算
 
     return Scaffold(
       appBar: AppBar(

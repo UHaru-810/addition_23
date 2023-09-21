@@ -17,6 +17,7 @@ List<int> numGenerator() {
       tmp = randomIntWithRange(min, max);
       valueSet.add(tmp);
     } while (valueSet.length != 5);
+    // セットの要素が6になるまで乱数を発生
 
     for (int i = 0; i < numOfSelect; i++) {
       sum += valueSet.elementAt(i);
@@ -28,7 +29,7 @@ List<int> numGenerator() {
       valueSet.contains(23) ||
       23 - sum < min ||
       23 - sum > max);
-  // セットの要素数が６でない・0が含まれる・23が含まれる・23-sumの値がmin, maxの範囲内かをしらべる
+  // セットの要素数が6でない・0が含まれる・23が含まれる・23-sumの値がmin, maxの範囲内かをしらべる
 
   valueList = valueSet.toList();
   // 以後の管理がしやすいようにListに変換
@@ -37,6 +38,7 @@ List<int> numGenerator() {
   return valueList;
 }
 
+// 乱数生成
 int randomIntWithRange(int min, int max) {
   int value = Random().nextInt(max - min);
   return value + min;

@@ -31,12 +31,13 @@ class _ResultState extends State<Result> {
   void initState() {
     playerNum = (double.parse(widget.minutes)) * 60 +
         double.parse(widget.seconds) +
-        (double.parse(widget.milliSeconds)) * 0.01;
+        (double.parse(widget.milliSeconds)) * 0.01; // 時間変換
     super.initState();
     fetchData(); //  // ページが表示されたらデータを取得する
     setData();
   }
 
+  // データ取得
   Future<void> fetchData() async {
     try {
       var db = FirebaseFirestore.instance;
@@ -67,6 +68,7 @@ class _ResultState extends State<Result> {
     });
   }
 
+  // データ保存
   Future<void> setData() async {
     try {
       var db = FirebaseFirestore.instance;
