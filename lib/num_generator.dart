@@ -4,7 +4,7 @@ List<int> numGenerator() {
   Set<int> valueSet = Set.identity();
   List<int> valueList = List.empty(growable: true);
   int sum, tmp;
-  int min = -10;
+  int min = -5;
   int max = 30;
   // min, maxを変更することで、カードに表示される数の最小・最大を変更
   int numOfSelect = randomIntWithRange(2, 6);

@@ -75,7 +75,7 @@ class PlayState extends State<Play> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(6),
           child: LinearProgressIndicator(
-            value: 0.1 * (widget.progress - 1).toDouble(),
+            value: 0.2 * (widget.progress - 1).toDouble(),
             backgroundColor: ColorLibrary.themeSecondary,
             valueColor:
                 AlwaysStoppedAnimation<Color>(ColorLibrary.themeTertiary),
@@ -239,7 +239,7 @@ class PlayState extends State<Play> {
                   ),
                   children: [
                     TextSpan(
-                      text: '${widget.progress.toString()} / 10',
+                      text: '${widget.progress.toString()} / 5',
                       style: const TextStyle(fontSize: 24),
                     ),
                     const TextSpan(
@@ -305,7 +305,7 @@ class PlayState extends State<Play> {
                                             }
                                           }
                                           HapticFeedback.mediumImpact();
-                                          widget.progress == 10
+                                          widget.progress == 5
                                               ? widget.stopWatchTimer!
                                                   .onStopTimer()
                                               : {};

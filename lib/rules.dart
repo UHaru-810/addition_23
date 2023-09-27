@@ -124,7 +124,7 @@ class Rules extends StatelessWidget {
                 style: headTextStyle,
               ),
               Text(
-                "10問を解くのにかかるタイムを競います。",
+                "5問を解くのにかかるタイムを競います。",
                 style: captionTextStyle,
               ),
               const SizedBox(height: 50),
