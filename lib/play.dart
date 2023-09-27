@@ -317,7 +317,7 @@ class PlayState extends State<Play> {
                                                 pageBuilder: (context,
                                                     animation,
                                                     secondaryAnimation) {
-                                                  if (widget.progress < 10) {
+                                                  if (widget.progress < 5) {
                                                     return Play(
                                                       progress:
                                                           widget.progress + 1,
