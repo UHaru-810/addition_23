@@ -41,7 +41,8 @@ class _ResultState extends State<Result> {
   Future<void> fetchData() async {
     try {
       var db = FirebaseFirestore.instance;
-      var querySnapshot = await db.collection("users").orderBy("time").get();
+      var querySnapshot =
+          await db.collection("prod_easy").orderBy("time").get();
       int index = 1;
 
       for (var docSnapshot in querySnapshot.docs) {
