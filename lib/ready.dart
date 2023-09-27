@@ -29,7 +29,7 @@ class _ReadyState extends State<Ready> {
     try {
       var db = FirebaseFirestore.instance;
       var querySnapshot =
-          await db.collection("users").orderBy("time").limit(1).get();
+          await db.collection("prod_easy").orderBy("time").limit(1).get();
       for (var docSnapshot in querySnapshot.docs) {
         final data = docSnapshot.data();
         setState(() {

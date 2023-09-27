@@ -77,7 +77,7 @@ class _ResultState extends State<Result> {
         "time":
             "${widget.minutes.padLeft(2, '0')}:${widget.seconds.padLeft(2, '0')}.${widget.milliSeconds.padLeft(2, '0')}"
       };
-      await db.collection("users").add(data);
+      await db.collection("prod_easy").add(data);
     } catch (e) {
       const Text("データを保存できませんでした");
     }
