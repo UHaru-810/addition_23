@@ -14,7 +14,7 @@ class ColorLibrary {
   static Color white = const Color(0xffFFFFFF);
 }
 
-// 主要ボタン
+// ボタン (Primary)
 class ButtonPrimary extends StatelessWidget {
   const ButtonPrimary(
       {super.key,
@@ -134,6 +134,7 @@ class ButtonPrimary extends StatelessWidget {
   }
 }
 
+// ボタン (Secondary)
 class ButtonSecondary extends StatelessWidget {
   const ButtonSecondary(
       {super.key,
