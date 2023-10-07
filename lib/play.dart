@@ -75,6 +75,7 @@ class PlayState extends State<Play> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(6),
           child: LinearProgressIndicator(
+            // #CNQ
             value: 0.2 * (widget.progress - 1).toDouble(),
             backgroundColor: ColorLibrary.themeSecondary,
             valueColor:
@@ -239,6 +240,7 @@ class PlayState extends State<Play> {
                   ),
                   children: [
                     TextSpan(
+                      // #CNQ
                       text: '${widget.progress.toString()} / 5',
                       style: const TextStyle(fontSize: 24),
                     ),
@@ -305,6 +307,7 @@ class PlayState extends State<Play> {
                                             }
                                           }
                                           HapticFeedback.mediumImpact();
+                                          // #CNQ
                                           widget.progress == 5
                                               ? widget.stopWatchTimer!
                                                   .onStopTimer()
@@ -317,6 +320,7 @@ class PlayState extends State<Play> {
                                                 pageBuilder: (context,
                                                     animation,
                                                     secondaryAnimation) {
+                                                  // #CNQ
                                                   if (widget.progress < 5) {
                                                     return Play(
                                                       progress:

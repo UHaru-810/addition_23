@@ -124,6 +124,7 @@ class Rules extends StatelessWidget {
                 style: headTextStyle,
               ),
               Text(
+                // #CNQ
                 "5問を解くのにかかるタイムを競います。",
                 style: captionTextStyle,
               ),
