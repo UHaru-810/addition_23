@@ -106,11 +106,13 @@ flutter:
        - asset: assets/fonts/Noto_Sans_Mono/NotoSansMono-ExtraBold.ttf
          weight: 700
 
-flutter_icons:
+flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/app-icon/app-icon.png"
+  image_path_ios: "assets/app-icon/app-icon_ios.png"
+  image_path_android: "assets/app-icon/app-icon_android.png"
   adaptive_icon_background: "#F1F4F8"
+  adaptive_icon_foreground: "assets/app-icon/app-icon_android_alfa.png"
 
 flutter_native_splash:
   image: 'assets/app-icon/app-icon_splash.png'
