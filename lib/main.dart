@@ -27,6 +27,7 @@ class Addition23 extends StatelessWidget {
     return MaterialApp(
       title: 'Addition 23',
       theme: ThemeData(
+        useMaterial3: false,
         primaryColor: ColorLibrary.themePrimary,
         fontFamily: 'NotoSansJP',
         textSelectionTheme: TextSelectionThemeData(
