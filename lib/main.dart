@@ -35,6 +35,7 @@ class Addition23 extends StatelessWidget {
           selectionColor: ColorLibrary.themeSecondary,
           selectionHandleColor: ColorLibrary.themeSecondary,
         ),
+        visualDensity: VisualDensity.standard
       ),
       home: const Home(),
     );
