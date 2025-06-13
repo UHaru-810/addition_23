@@ -117,8 +117,8 @@ class PlayState extends State<Play> {
                     TextButton(
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(ColorLibrary.white),
-                        overlayColor: MaterialStateProperty.all(
+                            WidgetStateProperty.all(ColorLibrary.white),
+                        overlayColor: WidgetStateProperty.all(
                             ColorLibrary.themeSecondary),
                       ).merge(
                         TextButton.styleFrom(
@@ -148,9 +148,9 @@ class PlayState extends State<Play> {
                     ),
                     TextButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
+                        backgroundColor: WidgetStateProperty.all(
                             ColorLibrary.themePrimary),
-                        overlayColor: MaterialStateProperty.all(
+                        overlayColor: WidgetStateProperty.all(
                             ColorLibrary.themeQuinary),
                       ).merge(
                         TextButton.styleFrom(
@@ -315,6 +315,7 @@ class PlayState extends State<Play> {
                                           Future.delayed(
                                               const Duration(milliseconds: 500),
                                               () {
+                                            // ignore: use_build_context_synchronously
                                             Navigator.of(context).push(
                                               PageRouteBuilder(
                                                 pageBuilder: (context,
@@ -378,9 +379,9 @@ class PlayState extends State<Play> {
                           : null,
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(backgroundColor[index]),
+                            WidgetStateProperty.all(backgroundColor[index]),
                         overlayColor:
-                            MaterialStateProperty.all(overlayColor[index]),
+                            WidgetStateProperty.all(overlayColor[index]),
                       ).merge(
                         TextButton.styleFrom(
                           shape: RoundedRectangleBorder(

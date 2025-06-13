@@ -95,8 +95,8 @@ class ButtonPrimary extends StatelessWidget {
           }
         },
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(ColorLibrary.themePrimary),
-          overlayColor: MaterialStateProperty.all(ColorLibrary.themeQuinary),
+          backgroundColor: WidgetStateProperty.all(ColorLibrary.themePrimary),
+          overlayColor: WidgetStateProperty.all(ColorLibrary.themeQuinary),
         ).merge(
           TextButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -181,9 +181,9 @@ class ButtonSecondary extends StatelessWidget {
               );
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(ColorLibrary.white),
+              backgroundColor: WidgetStateProperty.all(ColorLibrary.white),
               overlayColor:
-                  MaterialStateProperty.all(ColorLibrary.themeSecondary),
+                  WidgetStateProperty.all(ColorLibrary.themeSecondary),
             ).merge(
               TextButton.styleFrom(
                 side: BorderSide(

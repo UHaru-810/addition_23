@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'components.dart';
 
 class Ranking extends StatefulWidget {
-  const Ranking({Key? key}) : super(key: key);
+  const Ranking({super.key});
 
   @override
   RankingState createState() => RankingState();
