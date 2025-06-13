@@ -165,7 +165,7 @@ class RankingState extends State<Ranking> {
                                       boxShadow: [
                                         BoxShadow(
                                           color: ColorLibrary.themePrimary
-                                              .withOpacity(0.3),
+                                              .withValues(alpha: 0.3),
                                           offset: const Offset(0, 0),
                                           blurRadius: 8.0,
                                           spreadRadius: 1.5,

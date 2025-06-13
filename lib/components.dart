@@ -35,7 +35,7 @@ class ButtonPrimary extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: ColorLibrary.themePrimary.withOpacity(0.3),
+            color: ColorLibrary.themePrimary.withValues(alpha: 0.3),
             offset: const Offset(0, 0),
             blurRadius: 10.0,
             spreadRadius: 2.0,
