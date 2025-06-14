@@ -61,7 +61,7 @@ class Rules extends StatelessWidget {
       ),
       body: Center(
         child: SizedBox(
-          width: 285,
+          width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +109,7 @@ class Rules extends StatelessWidget {
                 "名前を入力してスタートします。\n※ 名前はランク表に記載(公開)されます。",
                 style: captionTextStyle,
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
               Text(
                 "❷ 和を23にする",
                 style: headTextStyle,
@@ -118,7 +118,7 @@ class Rules extends StatelessWidget {
                 "数字の和が 23 になるように、画面に表示されるカードを選択します。",
                 style: captionTextStyle,
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
               Text(
                 "❸ 速いタイムを目指す",
                 style: headTextStyle,
@@ -128,7 +128,7 @@ class Rules extends StatelessWidget {
                 "5問を解くのにかかるタイムを競います。",
                 style: captionTextStyle,
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 55),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
