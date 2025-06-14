@@ -70,27 +70,7 @@ class ButtonPrimary extends StatelessWidget {
             );
           } else {
             Navigator.of(context).push(
-              // 画面遷移アニメーション
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return nextPage;
-                },
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  final Offset begin = Offset(1.0, 0.0); // 右から左
-                  // final Offset begin = Offset(-1.0, 0.0); // 左から右
-                  final Offset end = Offset.zero;
-                  final Animatable<Offset> tween = Tween(begin: begin, end: end)
-                      .chain(CurveTween(curve: Curves.easeInOut));
-                  final Animation<Offset> offsetAnimation =
-                      animation.drive(tween);
-                  return SlideTransition(
-                    position: offsetAnimation,
-                    child: child,
-                  );
-                },
-                transitionDuration: const Duration(milliseconds: 300),
-              ),
+              MaterialPageRoute(builder: (_) => nextPage)
             );
           }
         },
@@ -156,28 +136,7 @@ class ButtonSecondary extends StatelessWidget {
           child: TextButton(
             onPressed: () {
               Navigator.of(context).push(
-                PageRouteBuilder(
-                  // 画面遷移アニメーション
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return nextPage;
-                  },
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    final Offset begin = Offset(1.0, 0.0); // 右から左
-                    // final Offset begin = Offset(-1.0, 0.0); // 左から右
-                    final Offset end = Offset.zero;
-                    final Animatable<Offset> tween =
-                        Tween(begin: begin, end: end)
-                            .chain(CurveTween(curve: Curves.easeInOut));
-                    final Animation<Offset> offsetAnimation =
-                        animation.drive(tween);
-                    return SlideTransition(
-                      position: offsetAnimation,
-                      child: child,
-                    );
-                  },
-                  transitionDuration: const Duration(milliseconds: 300),
-                ),
+                  MaterialPageRoute(builder: (_) => nextPage)
               );
             },
             style: ButtonStyle(

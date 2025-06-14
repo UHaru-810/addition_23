@@ -172,7 +172,7 @@ class _ResultState extends State<Result> {
                   ],
                 ),
                 SizedBox(
-                  height: deviceHeight * 0.06,
+                  height: deviceHeight * 0.05,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
