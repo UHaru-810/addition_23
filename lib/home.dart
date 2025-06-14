@@ -83,7 +83,8 @@ class Home extends StatelessWidget {
                       style: TextStyle(color: ColorLibrary.themePrimary),
                     ),
                     style: TextButton.styleFrom(
-                        overlayColor: ColorLibrary.themePrimary),
+                      overlayColor: ColorLibrary.themePrimary,
+                    ),
                   ),
                 ],
               ),
