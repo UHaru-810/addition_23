@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'components.dart';
 import 'ranking.dart';
@@ -77,7 +78,16 @@ class Home extends StatelessWidget {
                   const SizedBox(height: 25),
                   TextButton.icon(
                     icon: Icon(Icons.privacy_tip_rounded),
-                    onPressed: () {},
+                    onPressed: () async {
+                      final Uri uri = Uri.parse('https://flame-hell-936.notion.site/Addition-23-212cc6fce0b380ea9966f89da615b514?source=copy_link');
+                      if (await canLaunchUrl(uri)) {
+                        await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                         SnackBar(content: Text('ページを開くことができませんでした')),
+                        );
+                      }
+                    },
                     label: Text(
                       'プライバシーポリシー',
                       style: TextStyle(color: ColorLibrary.themePrimary),
