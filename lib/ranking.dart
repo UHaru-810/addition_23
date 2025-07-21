@@ -209,36 +209,39 @@ class RankingState extends State<Ranking> {
                                       ),
                                     ),
                                   ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        time[index],
-                                        style: TextStyle(
-                                          color: index == 0
-                                              ? Colors.white
-                                              : ColorLibrary.text,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 25,
-                                          letterSpacing: 0.5,
-                                          height: 1.2,
+                                  Flexible(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          time[index],
+                                          style: TextStyle(
+                                            color: index == 0
+                                                ? Colors.white
+                                                : ColorLibrary.text,
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 25,
+                                            letterSpacing: 0.5,
+                                            height: 1.2,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        name[index],
-                                        style: TextStyle(
-                                          color: index == 0
-                                              ? Colors.white
-                                              : ColorLibrary.gray,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          height: 1.3,
-                                        ),
-                                      )
-                                    ],
+                                        Text(
+                                          name[index],
+                                          style: TextStyle(
+                                            color: index == 0
+                                                ? Colors.white
+                                                : ColorLibrary.gray,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 14,
+                                            height: 1.3,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        )
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
