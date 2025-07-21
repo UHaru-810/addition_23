@@ -49,26 +49,27 @@ class DefaultFirebaseOptions {
     messagingSenderId: '805610748437',
     projectId: 'addition-23',
     authDomain: 'addition-23.firebaseapp.com',
+    databaseURL: 'https://addition-23-default-rtdb.firebaseio.com',
     storageBucket: 'addition-23.appspot.com',
-    measurementId: 'G-4ZJ50ZT71D',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDqB5A_p5VCA30PhLhupxns3TUfUGp87Fc',
-    appId: '1:805610748437:android:11ff15145da87aa5abec1c',
+    appId: '1:805610748437:android:4adadde97a67582babec1c',
     messagingSenderId: '805610748437',
     projectId: 'addition-23',
+    databaseURL: 'https://addition-23-default-rtdb.firebaseio.com',
     storageBucket: 'addition-23.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBRNB3gNPXVzx5ZaO0hBMZuGXKS0E-m6l4',
-    appId: '1:805610748437:ios:adbc7af6b9f1767cabec1c',
+    appId: '1:805610748437:ios:8672032b4804edb9abec1c',
     messagingSenderId: '805610748437',
     projectId: 'addition-23',
+    databaseURL: 'https://addition-23-default-rtdb.firebaseio.com',
     storageBucket: 'addition-23.appspot.com',
-    iosClientId: '805610748437-or4jsg11b0fn7645rsnbt851v6b4144r.apps.googleusercontent.com',
-    iosBundleId: 'lakeside.imperial.addition23',
+    iosBundleId: 'com.kousen.pg.addition23',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -78,6 +79,6 @@ class DefaultFirebaseOptions {
     projectId: 'addition-23',
     storageBucket: 'addition-23.appspot.com',
     iosClientId: '805610748437-m2tt2n0pt7mrqus024buv4ik4nfkcar4.apps.googleusercontent.com',
-    iosBundleId: 'lakeside.imperial.addition23.RunnerTests',
+    iosBundleId: 'com.kousen.pg.addition23.RunnerTests',
   );
 }

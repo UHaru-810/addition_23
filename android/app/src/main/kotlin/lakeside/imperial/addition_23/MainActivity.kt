@@ -1,4 +1,4 @@
-package lakeside.imperial.addition_23
+package com.kousen.pg.addition23
 
 import io.flutter.embedding.android.FlutterActivity
 

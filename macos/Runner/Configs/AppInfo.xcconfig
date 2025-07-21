@@ -8,7 +8,7 @@
 PRODUCT_NAME = addition_23
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = lakeside.imperial.addition23
+PRODUCT_BUNDLE_IDENTIFIER = com.kousen.pg.addition23
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 lakeside.imperial. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.kousen.pg. All rights reserved.

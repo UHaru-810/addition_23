@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "805610748437",
+    "firebase_url": "https://addition-23-default-rtdb.firebaseio.com",
     "project_id": "addition-23",
     "storage_bucket": "addition-23.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:805610748437:android:11ff15145da87aa5abec1c",
+        "mobilesdk_app_id": "1:805610748437:android:4adadde97a67582babec1c",
         "android_client_info": {
-          "package_name": "lakeside.imperial.addition_23"
+          "package_name": "com.kousen.pg.addition23"
         }
       },
       "oauth_client": [
